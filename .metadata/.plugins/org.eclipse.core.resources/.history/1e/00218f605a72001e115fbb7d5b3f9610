@@ -1,0 +1,6 @@
+package com.myweb.www.domain;
+
+public class BoardDTO {
+	
+	private BoardVO bvo;
+}

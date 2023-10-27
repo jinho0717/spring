@@ -1,0 +1,15 @@
+package com.myweb.www.config;
+
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+
+import lombok.extern.slf4j.Slf4j;
+
+@Configuration
+@Slf4j
+@EnableWebSecurity
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
+	
+	
+}
