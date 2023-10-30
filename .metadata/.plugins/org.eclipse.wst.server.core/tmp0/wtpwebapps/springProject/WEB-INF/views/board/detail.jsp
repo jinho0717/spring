@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
     <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+    <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -81,18 +82,22 @@
 	</a><br><br><br>
 	
 	<!-- 댓글라인 -->
-<div class="container">
-<!-- 댓글 등록 라인 -->
+	<div class="container">
+		<!-- 댓글 등록 라인 -->
+        <sec:authorize access="isAuthenticated()">
+		<sec:authentication property="principal.mvo.email" var="authEmail"/>
 		 <div class="input-group mb-3">
-	      <span class="input-group-text" id="cmtWriter">Writer</span>
+	      <span class="input-group-text" id="cmtWriter">${authEmail }</span>
 		  <input type="text" class="form-control" placeholder="Test Content" id="cmtText">
 		  <button type="button" class="btn btn-success" id="cmtPostBtn">등록</button>
 		</div>
+		</sec:authorize>
+		
 		<!-- 댓글 표시 라인 -->
 		<ul class="list-group list-group-flush" id="cmtListArea">
 		  <li class="list-group-item">
 		  	<div class="mb-3">
-		  		<div  class="fw-bold">Writer</div>
+		  		<div  class="fw-bold">${authEmail }</div>
 		  		Content
 		  	</div>
 		  	<span class="badge rounded-pill text-bg-dark">modAt</span>
@@ -128,6 +133,7 @@
 		    </div>
 		  </div>
 		</div>
+
 </div>
 	<script type="text/javascript">
 	const isOk = `<c:out value="${isOk}" />`;
@@ -135,7 +141,7 @@
 	if (isOk == 1) {
 		alert('수정완료');
 	}
-	let bnoVal = `<c:out value="${bvo.bno}" />`;
+	let bnoVal = `<c:out value="${bdto.bvo.bno}" />`;
 	console.log(bnoVal);
 	</script>
 	

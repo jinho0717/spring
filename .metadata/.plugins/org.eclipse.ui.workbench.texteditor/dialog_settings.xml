@@ -8,6 +8,7 @@
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value=" userDetail"/>
 			<item value="&quot;bno&gt;&gt; &quot;+bno+ &quot; bdto&gt;&gt; &quot;+bdto"/>
 			<item value="bno&gt;&gt; &quot;+bno+ &quot; bdto&gt;&gt;"/>
 			<item value="bno&gt;&gt; &quot;+bno+ &quot;bdto&gt;&gt;"/>

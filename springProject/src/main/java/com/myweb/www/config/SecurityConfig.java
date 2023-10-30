@@ -60,7 +60,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		//승인 요청
 		http.authorizeRequests()
 		.antMatchers("/member/list").hasRole("ADMIN")
-		.antMatchers("/","/board/list","/board/detail","/resources/**","/upload/**","/member/register","/member/login").permitAll()
+		.antMatchers("/","/board/list","/board/detail","/resources/**","/upload/**","/comment/**","/member/register","/member/login").permitAll()
 		.anyRequest().authenticated(); // => 인증된 사용자만 처리
 		
 		//커스텀 로그인 페이지를 구성
@@ -72,7 +72,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.successHandler(authSuccessHandler())
 		.failureHandler(authFailureHandler());
 		
-		//로그아웃 페이지
+		//로그아웃 페이지 반드시 method="post"
 		http.logout()
 		.logoutUrl("/member/logout")
 		.invalidateHttpSession(true)

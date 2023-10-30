@@ -1,0 +1,70 @@
+VO => DB의 단일 테이블의 객체
+DTO => 여러 테이블을 묶어서 사용
+화면  <=> ctrl <=>  service <=> dao <=> DB 저장
+
+------------------------------------
+handler => DB처리 필요없이 화면과 컨트롤러의 처리가 
+복잡해질 경우. 
+DB와 상관없음.
+일반적으로 db의 정보가 필요하면 컨트롤러/ 서비스에서 정보를 가져다가 매개변수로 전달
+
+
+2023-10-18
+DB생성
+create database springdb;
+
+board table 구성
+>> _ 스네이크 표기법을 사용
+유저 생성 구문 
+create user 'username'@'localhost'
+indentified by 'password'
+유저 권한 부여 구문
+grant all privileges on springdb.*to
+'springUser'@'localhost' with grant option;
+
+flush privileges;
+
+
+create table board(
+bno bigint not null auto_increment,
+title varchar(200) not null,
+content text not null,
+writer varchar(100) not null,
+reg_at datetime default now(),
+mod_at datetime default now(),
+read_count int default 0,
+cmt_qty int default 0,
+has_file int default 0,
+primary key(bno)
+);
+
+2023-10-20
+create table comment(
+cno bigint auto_increment,
+bno bigint not null,
+writer varchar(100) not null,
+content text not null,
+reg_at datetime default now(),
+mod_at datetime default now(),
+primary key(cno)
+);
+
+댓글 수정
+댓글 수정버튼을 누르면 모달창 open
+모달창에서 댓글 content 값을 입력하고, 수정 버튼을 누르면 => async 수정 타기
+
+2023-10-27
+create table member(
+email varchar(100) not null,
+pwd varchar(1000) not null,
+nick_name varchar(100) not null,
+reg_at datetime default now(),
+last_login datetime default null,
+primary key(email));
+
+create table auth_member(
+email varchar(100) not null,
+auth varchar(50) not null,
+);
+
+alter table auth_member drop primary key;
