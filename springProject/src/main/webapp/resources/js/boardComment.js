@@ -91,9 +91,9 @@ function getCommentList(bno, page=1){
     })
 }
 
-async function removeCommentToServer(cno){
+async function removeCommentToServer(cno,writer){
     try {
-        const url = '/comment/'+cno;
+        const url = '/comment/'+cno+'/'+writer;
         const config = {
             method : 'delete'
         };
@@ -111,9 +111,13 @@ document.addEventListener('click', (e)=>{
         console.log('삭제버튼 클릭');
         let li = e.target.closest('li');
         let cnoVal = li.dataset.cno;
-        removeCommentToServer(cnoVal).then(result =>{
+        let writerId = li.dataset.writer;
+        
+        removeCommentToServer(cnoVal,writerId).then(result =>{
             if (result == 1) {
                 alert('댓글 삭제 성공~!!');
+            }else{
+                alert('작성자가 아닙니다')
             }
             getCommentList(bnoVal);
         })

@@ -5,6 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.myweb.www.repository.MemberDAO;
 import com.myweb.www.security.MemberVO;
@@ -34,5 +35,36 @@ public class MemberServiceImpl implements MemberService {
 	public List<MemberVO> selectAllList() {
 		// TODO Auto-generated method stub
 		return mdao.selectAllList();
+	}
+
+	@Override
+	public MemberVO getDetail(String email) {
+		// TODO Auto-generated method stub
+		return mdao.selectUser(email);
+	}
+
+	@Override
+	public int modify(MemberVO mvo) {
+		
+		return mdao.modify(mvo);
+	}
+
+	@Override
+	public String selectpwd(MemberVO mvo) {
+		// TODO Auto-generated method stub
+		return mdao.selectPwd(mvo);
+	}
+
+	@Override
+	public int modifyNick(MemberVO mvo) {
+		// TODO Auto-generated method stub
+		return mdao.modifyNick(mvo);
+	}
+
+	@Transactional
+	@Override
+	public int remove(String email) {
+			mdao.removeAuth(email);
+		return mdao.remove(email);
 	}
 }

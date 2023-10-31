@@ -16,5 +16,11 @@
 <h3>dge positioning 유틸리티를 사용하여 요소를 쉽게 정렬합니다. 형식은 {property}-{position} 입니다.</h3>
 
 <jsp:include page="common/footer.jsp" />
+<script type="text/javascript">
+const isOk = `<c:out value="${isOk}" />`;
+if (isOk == 1) {
+	alert('회원 탈퇴 완료');
+}
+</script>
 </body>
 </html>

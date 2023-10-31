@@ -13,6 +13,16 @@ public interface MemberService {
 
 	List<MemberVO> selectAllList();
 
+	MemberVO getDetail(String email);
+
+	int modify(MemberVO mvo);
+
+	String selectpwd(MemberVO mvo);
+
+	int modifyNick(MemberVO mvo);
+
+	int remove(String email);
+
 	
 
 }

@@ -131,4 +131,6 @@ public class BoardController {
 		return isdel > 0 ? new ResponseEntity<String>("1", HttpStatus.OK) :
 			new ResponseEntity<String>("0", HttpStatus.INTERNAL_SERVER_ERROR);
 	}
+	
+	
 }

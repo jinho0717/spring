@@ -10,21 +10,24 @@
 <body>
 <jsp:include page="../common/header.jsp"></jsp:include>
 <jsp:include page="../common/nav.jsp"></jsp:include>
-<table>
+<table class="table table-hover">
 	<tr>
-		<th></th>
-		<th></th>
-		<th></th>
-		<th></th>
+		<th>아이디</th>
+		<th>닉네임</th>
+		<th>계정 생성일</th>
+		<th>마지막 로그인</th>
 	</tr>	
 	
-	<c:set value="${memList }" var="mvo"></c:set>
+	
+	
+	<c:forEach items="${memList }" var="mvo">
 	<tr>
-		<th></th>
-		<th></th>
-		<th></th>
-		<th></th>
+		<th>${mvo.email }</th>
+		<th>${mvo.nickName }</th>
+		<th>${mvo.regAt }</th>
+		<th>${mvo.lastLogin }</th>
 	</tr>
+	</c:forEach>
 </table>
 <jsp:include page="../common/footer.jsp"></jsp:include>
 </body>

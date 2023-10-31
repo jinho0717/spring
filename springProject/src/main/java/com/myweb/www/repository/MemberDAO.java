@@ -19,4 +19,16 @@ public interface MemberDAO {
 
 	List<MemberVO> selectAllList();
 
+	MemberVO selectUser(String email);
+
+	int modify(MemberVO mvo);
+
+	String selectPwd(MemberVO mvo);
+
+	int modifyNick(MemberVO mvo);
+
+	void removeAuth(String email);
+
+	int remove(String email);
+
 }

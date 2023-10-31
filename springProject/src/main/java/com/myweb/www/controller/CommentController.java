@@ -1,5 +1,6 @@
 package com.myweb.www.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -49,10 +50,13 @@ public class CommentController {
 		return new ResponseEntity<PagingHandler>(csv.getList(bno, pgvo), HttpStatus.OK);
 	}
 	
-	@DeleteMapping(value = "/{cno}")
-	public ResponseEntity<String> delete(@PathVariable("cno")int cno){
-		
-		int isOk = csv.delete(cno);
+	@DeleteMapping(value = "/{cno}/{writer}")
+	public ResponseEntity<String> delete(@PathVariable("cno")int cno,
+			@PathVariable("writer")String writer , Principal principal ){
+		int isOk = 0;
+		if(writer.equals(principal.getName())) {
+			isOk = csv.delete(cno);			
+		}
 		return isOk > 0 ? new ResponseEntity<String>("1", HttpStatus.OK) :
 			new ResponseEntity<String>("0", HttpStatus.INTERNAL_SERVER_ERROR);
 	}
