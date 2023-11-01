@@ -107,6 +107,7 @@ async function removeCommentToServer(cno,writer){
 
 document.addEventListener('click', (e)=>{
     console.log(e.target);
+    
     if (e.target.classList.contains('delBtn')) {
         console.log('삭제버튼 클릭');
         let li = e.target.closest('li');
@@ -126,22 +127,30 @@ document.addEventListener('click', (e)=>{
         //nextSibling() : 같은 부모의 다음 형제 객체를 반환
         let cmtText = li.querySelector('.fw-bole').nextSibling;
         console.log(cmtText);
+        // let writerId = li.dataset.writer;
+        // console.log(writerId);
         //기존 내용 모달창에 반영(수정하기 편하게...)
         document.getElementById('cmtTextMod').value = cmtText.value;
         //cmtModBtn에 data-cno 달기
         document.getElementById('cmtModBtn').setAttribute('data-cno',li.dataset.cno);
+        document.getElementById('cmtModBtn').setAttribute('data-writer',li.dataset.writer);
     }else if(e.target.id == 'cmtModBtn'){
+        let li = e.target.closest('li');
         let cmtDataMod ={
         cno: e.target.dataset.cno,
-        content: document.getElementById('cmtTextMod').value
+        content: document.getElementById('cmtTextMod').value,
+        writer : e.target.dataset.writer,
         };
         console.log(cmtDataMod);
         editCommentToserver(cmtDataMod).then(result =>{
             if (parseInt(result)) {
                 //모달창 닫기
                 document.querySelector('.btn-close').click();
-                if (result == 1) {
+                console.log("result >>> ",result);
+                if (result == "1") {
                     alert('댓글 수정 완료');
+                }else if(result == "2"){
+                    alert('작성자가 아닙니다');
                 }
                 getCommentList(bnoVal);
             }

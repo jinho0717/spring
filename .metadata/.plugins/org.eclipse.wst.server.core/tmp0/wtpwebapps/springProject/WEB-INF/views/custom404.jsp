@@ -5,6 +5,14 @@
 <head>
 <meta charset="UTF-8">
 <title>error Page</title>
+<style type="text/css">
+	body{
+		background-image: url("/resources/image/error-404.jpg");
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: center;
+	}
+</style>
 </head>
 <body>
 <h1> 404 ERROR Page</h1>

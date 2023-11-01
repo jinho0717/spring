@@ -71,12 +71,18 @@
 				</c:forEach>
 			</ul>
 	</div>
+	<sec:authorize access="isAuthenticated()">
+	<sec:authentication property="principal.mvo.email" var="authEmail"/>
+	<c:if test="${authEmail  eq bvo.writer }">
 	<a href="/board/modify?bno=${bvo.bno }">
 	<button type="button" class="btn btn-success">수정</button>
 	</a><br><br>
 	<a href="/board/remove?bno=${bvo.bno }">
 	<button type="button" class="btn btn-danger">삭제</button>
-	</a><br><br>
+	</a>
+	</c:if>
+	</sec:authorize>
+	<br><br>
 	<a href="/board/list">
 	<button type="button" class="btn btn-primary">리스트</button>
 	</a><br><br><br>
@@ -97,7 +103,7 @@
 		<ul class="list-group list-group-flush" id="cmtListArea">
 		  <li class="list-group-item">
 		  	<div class="mb-3">
-		  		<div  class="fw-bold">${authEmail }</div>
+		  		<div  class="fw-bold" >${authEmail }</div>
 		  		Content
 		  	</div>
 		  	<span class="badge rounded-pill text-bg-dark">modAt</span>

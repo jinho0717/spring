@@ -64,10 +64,17 @@ public class CommentController {
 	@PutMapping(value = "/{cno}", consumes = "application/json",
 			produces = MediaType.TEXT_PLAIN_VALUE)
 	public ResponseEntity<String> update(@PathVariable("cno")long cno, 
-			@RequestBody CommentVO cvo){
-		log.info(">> cno / cvo >> "+ cno + "/" + cvo);
-		int isOk = csv.update(cvo);
+			@RequestBody CommentVO cvo,
+			Principal principal){
+		int isOk = 0;
+		String userEmail = principal.getName();
+		log.info("cvo writer >>>> "+cvo.getWriter());
+		log.info("cvo email >>>> "+userEmail);
+		if (cvo.getWriter().equals(userEmail)) {
+			isOk = csv.update(cvo);
+		}
+		log.info(">> cno / cvo >> "+ cno + "/" + cvo + "/"+ isOk);
 		return isOk > 0 ? new ResponseEntity<String>("1", HttpStatus.OK) :
-			new ResponseEntity<String>("0", HttpStatus.INTERNAL_SERVER_ERROR);
+			new ResponseEntity<String>("2", HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 }
